@@ -1,12 +1,22 @@
 # mapreduce-example
 
+## Setup
+
+```console
+$ yarn && yarn build
+```
+
 ## Count words in README
 
 ```console
-$ yarn mapreduce \
+$ yarn mapreduce -v \
+  --inputFormat txt \
   --inputPaths ./README.md \
   --outputPath ./wordCounts.jsonl \
   --plugins ./dist/index.js \
   --map WordCountMapper \
-  --reduce IdentityReducer 
+  --reduce SumCountsReducer \
+  --combine SumCountsReducer \
+  --plugins ./dist/index.js \
+  -D valueProperty=value
 ```
