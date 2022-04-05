@@ -1,4 +1,4 @@
-# mapreduce-example
+# [@wholebuzz/mapreduce](https://www.npmjs.com/package/@wholebuzz/mapreduce) Example Project
 
 ## Setup
 

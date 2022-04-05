@@ -1,8 +1,4 @@
-import type {
-  Context,
-  Mapper,
-  Reducer,
-} from '@wholebuzz/mapreduce/dist/types'
+import type { Context, Mapper, Reducer } from '@wholebuzz/mapreduce/dist/types'
 import { tokenizeForHistogram } from '@wholebuzz/search/lib/tokens'
 
 export class WordCountMapper<Key, Value extends { toString: () => string }>
@@ -19,6 +15,9 @@ export class WordCountMapper<Key, Value extends { toString: () => string }>
 export class SumCountsReducer implements Reducer<string, number> {
   reduce(key: string, values: number[], context: Context<string, number>) {
     // console.log('SumCountsReducer', key, values)
-    context.write(key, values.reduce((sum, x) => sum + x, 0)) 
+    context.write(
+      key,
+      values.reduce((sum, x) => sum + x, 0)
+    )
   }
 }
