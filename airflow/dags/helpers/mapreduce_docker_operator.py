@@ -1,7 +1,7 @@
 from datetime import datetime
 import time
 
-from airflow.providers.amazon.aws.operators.ecs import ECSOperator
+from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.operators.dummy import DummyOperator
 from airflow import DAG
 
@@ -10,8 +10,6 @@ mapreduce_defaults = {
     'map': 'IdentityMapper',
     'reduce': 'IdentityReducer',
     'shuffle_directory': 's3://mapreduce-jobs/',
-    'cpu': '256',
-    'memory': '512',
 }
 
 
@@ -19,7 +17,7 @@ def conf_or_default_template(name, default):
     return '{{dag_run.conf.get("' + name + '") or "' + default + '"}}'
 
 
-def mapreduce_ecs_operator(dag, **kwargs):
+def mapreduce_docker_operator(dag, **kwargs):
     user = kwargs.get('user', 'mr-user')
     name = kwargs.get('name', 'mr-job')
     jobid = name + '-' + str(int(time.time()))
@@ -41,40 +39,16 @@ def mapreduce_ecs_operator(dag, **kwargs):
     operators = [ begin_operator ]
 
     for i in range(num_workers):
-        ecs_operator = ECSOperator(
+        ecs_operator = DockerOperator(
             dag=dag,
             do_xcom_push=True,
-            task_definition='Your ECS Task for wholebuzz/mapreduce container',
+            auto_remove=True,
+            image='wholebuzz/mapreduce',
             task_id=kwargs.get('task_id', 'mapreduce') + '-' + str(i),
-            cluster='Your cluster',
-            launch_type='EC2',
-            aws_conn_id='aws_default',
-            overrides={
-                'cpu': conf_or_default_template('cpu', kwargs.get('cpu', mapreduce_defaults['cpu'])),
-                'memory': conf_or_default_template('memory', kwargs.get('memory', mapreduce_defaults['memory'])),
-                'containerOverrides': [
-                    {
-                        'name': 'wholebuzz/mapreduce',
-                        'environment': [
-                            {
-                                'name': 'RUN_ARGS',
-                                'value': 'mapreduce ' + job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
-                            },
-                        ],
-                    },
-                ],
+            environment={
+                'name': 'RUN_ARGS',
+                'value': 'mapreduce ' + job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
             },
-            network_configuration={
-                'awsvpcConfiguration': {
-                    'securityGroups': ['Your security group'],
-                    'subnets': ['Your subnet'],
-                },
-            },
-            tags={
-                'Application': 'mapreduce',
-            },
-            awslogs_group='Your log group',
-            awslogs_stream_prefix='Your log prefix',
         )
         operators.append(ecs_operator)
         begin_operator >> ecs_operator >> complete_operator

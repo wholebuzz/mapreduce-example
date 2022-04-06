@@ -4,7 +4,7 @@ from json import loads
 from airflow.operators.dummy import DummyOperator
 from airflow import DAG
 
-from helpers.mapreduce import mapreduce_ecs_operator
+from helpers.mapreduce_ecs_operator import mapreduce_ecs_operator
 
 with DAG(
     dag_id="mapreduce2_ecs",
@@ -16,7 +16,7 @@ with DAG(
 ) as dag:
 
     mapreduce_tasks = mapreduce_ecs_operator(dag, num_workers=2)
-    success = DummyOperator(task_id='mapreduce_success')
-    failure = DummyOperator(task_id='mapreduce_failure')
+    success = DummyOperator(task_id='mapreduce_success', trigger_rule='all_success')
+    failure = DummyOperator(task_id='mapreduce_failure', trigger_rule='one_failed')
 
     mapreduce_tasks[-1] >> [success, failure]

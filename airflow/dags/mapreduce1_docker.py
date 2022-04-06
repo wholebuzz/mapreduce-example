@@ -4,10 +4,10 @@ from json import loads
 from airflow.operators.dummy import DummyOperator
 from airflow import DAG
 
-from helpers.mapreduce_ecs_operator import mapreduce_ecs_operator
+from helpers.mapreduce_docker_operator import mapreduce_docker_operator
 
 with DAG(
-    dag_id="mapreduce1_ecs",
+    dag_id="mapreduce1_docker",
     schedule_interval=None,
     start_date=datetime(2021, 9, 30),
     tags=["ecs", "mapreduce"],
@@ -15,7 +15,7 @@ with DAG(
     user_defined_filters={'fromjson': lambda s: loads(s)},
 ) as dag:
 
-    mapreduce_tasks = mapreduce_ecs_operator(dag, num_workers=1)
+    mapreduce_tasks = mapreduce_docker_operator(dag, num_workers=1)
     success = DummyOperator(task_id='mapreduce_success', trigger_rule='all_success')
     failure = DummyOperator(task_id='mapreduce_failure', trigger_rule='one_failed')
 
