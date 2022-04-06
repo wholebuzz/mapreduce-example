@@ -28,7 +28,7 @@ def mapreduce_ecs_operator(dag, **kwargs):
     reducer = conf_or_default_template('reduce', kwargs.get('reduce', mapreduce_defaults['reduce']))
     input_paths = conf_or_default_template('input_paths', kwargs.get('input_paths', ''))
     output_path = conf_or_default_template('output_path', kwargs.get('output_path', ''))
-    output_shards = conf_or_default_template('output_shards', kwargs.get('output_shards', ''))
+    output_shards = conf_or_default_template('output_shards', kwargs.get('output_shards', '1'))
     shuffle_directory = conf_or_default_template('shuffle_directory', kwargs.get('shuffle_directory', ''))
     num_workers = kwargs.get('num_workers', 1)
 
@@ -58,7 +58,7 @@ def mapreduce_ecs_operator(dag, **kwargs):
                         'environment': [
                             {
                                 'name': 'RUN_ARGS',
-                                'value': 'mapreduce ' + job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
+                                'value': job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
                             },
                         ],
                     },

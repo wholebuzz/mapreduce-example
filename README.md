@@ -13,7 +13,6 @@ $ yarn mapreduce -v \
   --inputFormat txt \
   --inputPaths ./README.md \
   --outputPath ./wordCounts.jsonl \
-  --plugins ./dist/index.js \
   --map WordCountMapper \
   --reduce SumCountsReducer \
   --combine SumCountsReducer \

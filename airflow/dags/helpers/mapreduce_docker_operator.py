@@ -26,7 +26,7 @@ def mapreduce_docker_operator(dag, **kwargs):
     reducer = conf_or_default_template('reduce', kwargs.get('reduce', mapreduce_defaults['reduce']))
     input_paths = conf_or_default_template('input_paths', kwargs.get('input_paths', ''))
     output_path = conf_or_default_template('output_path', kwargs.get('output_path', ''))
-    output_shards = conf_or_default_template('output_shards', kwargs.get('output_shards', ''))
+    output_shards = conf_or_default_template('output_shards', kwargs.get('output_shards', '1'))
     shuffle_directory = conf_or_default_template('shuffle_directory', kwargs.get('shuffle_directory', ''))
     num_workers = kwargs.get('num_workers', 1)
 
@@ -46,8 +46,10 @@ def mapreduce_docker_operator(dag, **kwargs):
             image='wholebuzz/mapreduce',
             task_id=kwargs.get('task_id', 'mapreduce') + '-' + str(i),
             environment={
-                'name': 'RUN_ARGS',
-                'value': 'mapreduce ' + job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
+                # 'AWS_REGION': '',
+                # 'AWS_ACCESS_KEY_ID': '',
+                # 'AWS_SECRET_ACCESS_KEY': '',
+                'RUN_ARGS': job_args + input_args + output_args + kwargs.get('extra_args', '') + ' --workerIndex ' + str(i),
             },
         )
         operators.append(ecs_operator)
