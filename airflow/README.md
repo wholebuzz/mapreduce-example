@@ -1,14 +1,14 @@
-## Run on Airflow
+# Airflow @wholebuzz/mapreduce examples
 
-### Deploy input and plugin to shared storage
+## Deploy input and plugin to shared storage
 
 ```
-$ export MY_BUCKET=s3://av8-mapreduce-jobs
+$ export MY_BUCKET=s3://mapreduce-jobs
 $ aws s3 cp README.md $MY_BUCKET
 $ aws s3 cp dist/index.js $MY_BUCKET
 ```
 
-### Trigger mapreduce DockerOperataor
+## Trigger mapreduce DockerOperataor
 
 ```console
 $ airflow dags trigger -c "{
@@ -21,7 +21,7 @@ $ airflow dags trigger -c "{
 }" mapreduce1_docker 
 ```
 
-### Check output
+## Check output
 
 ```console
 $ aws s3 cp $MY_BUCKET/wordCounts.jsonl -

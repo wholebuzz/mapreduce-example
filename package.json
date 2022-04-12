@@ -25,7 +25,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "@wholebuzz/mapreduce": "^0.0.14",
+    "@wholebuzz/mapreduce": "^0.0.16",
     "@wholebuzz/search": "^0.0.8"
   },
   "devDependencies": {

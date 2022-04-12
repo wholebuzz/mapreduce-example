@@ -1961,12 +1961,12 @@
     yargs "^17.1.1"
     zlib "^1.0.5"
 
-"@wholebuzz/mapreduce@^0.0.14":
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/@wholebuzz/mapreduce/-/mapreduce-0.0.14.tgz#cbb93b3785c327dd1ada394fb1d0ba55fb1a413c"
-  integrity sha512-U7x43qj3NhsE258LB+FyQ3TIcRBg/2DGJvbuGGwxJiamG2mFUAyHaC+eomHp4B+tCCxpHEdVALck5y/sBuZOwA==
+"@wholebuzz/mapreduce@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@wholebuzz/mapreduce/-/mapreduce-0.0.16.tgz#4b01ed405ed6c6679853dea38e0f5f31bbde69bb"
+  integrity sha512-M4XgGo9NvxXPhfKCSDQB4AlxdZ1mzhbZB1gP0bppQYZZX8sbbLmI88uF/ANuS086f7eBaJikCpmTybIRuw3LDg==
   dependencies:
-    dbcp "^1.4.5"
+    dbcp "^1.4.6"
     level "^7.0.0"
     parse-key-value-pair "^1.1.2"
     require-from-string "^2.0.2"
@@ -3075,10 +3075,10 @@ db-json-column@^0.0.3:
   resolved "https://registry.yarnpkg.com/db-json-column/-/db-json-column-0.0.3.tgz#b01153994da6712074d30d95f4f970946809a05d"
   integrity sha512-aEXyL6kZxVAJJ0jVmZNlAHIKnVTPgd976oLIOgFmfVGNdvn4q4zmpQrVp04lPlxT13ezeNc4zH1t0zUBcSiDeQ==
 
-dbcp@^1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/dbcp/-/dbcp-1.4.5.tgz#25bc50bc5921adc9bd442832e807e5512a85926b"
-  integrity sha512-ps0zGYCIS3FEYMy04110mVDJz8Lhn9ADXtFtiiRbUuZedDrTz0dgHfHH4czLQGgSzM0QoC2TcWIbkTHkd7Hynw==
+dbcp@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/dbcp/-/dbcp-1.4.6.tgz#5254dd0f53791ebd214d3f36246745cdf8493b05"
+  integrity sha512-ELrsy+lpc/lsbWHEGUsUBfyiNhWwnnKyk9cmA3rlfjUxcf/T0h1UeEXfBV3h6YUcET9GWaPt7FSjVMkt6TUI+A==
   dependencies:
     "@azure/identity" "^2.0.0"
     "@azure/storage-blob" "^12.8.0"
