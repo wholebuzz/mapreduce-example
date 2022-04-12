@@ -1,21 +1,8 @@
-# [@wholebuzz/mapreduce](https://www.npmjs.com/package/@wholebuzz/mapreduce) Example Project
+# @wholebuzz/mapreduce-example
 
-## Setup
+## Example project for [@wholebuzz/mapreduce](https://www.npmjs.com/package/@wholebuzz/mapreduce)
 
-```console
-$ yarn && yarn build
-```
+This project illustrates a custom Mapper and Reducer for counting the words in input text.
 
-## Count words in README
-
-```console
-$ yarn mapreduce -v \
-  --inputFormat txt \
-  --inputPaths ./README.md \
-  --outputPath ./wordCounts.jsonl \
-  --map WordCountMapper \
-  --reduce SumCountsReducer \
-  --combine SumCountsReducer \
-  --plugins ./dist/index.js \
-  -D valueProperty=value
-```
+- [local](local)
+- [airflow](airflow)
