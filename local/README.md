@@ -34,7 +34,7 @@ $ yarn mapreduce -v \
   -D valueProperty=value
 ```
 
-## With SumCounts2Reducer no "-D valueProperty" is required
+With SumCounts2Reducer no "-D valueProperty" is required:
 
 ```console
 $ yarn mapreduce -v \

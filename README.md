@@ -7,6 +7,7 @@ This project illustrates running a custom Mapper and Reducer in various scheduli
 - [local](local)
 - [docker](docker)
 - [airflow](airflow)
+- [gcp](gcp)
 
 The [supplied test dataset](https://github.com/wholebuzz/mapreduce/tree/main/test) consists of
 a collection of 10,000 headlines of the form:
