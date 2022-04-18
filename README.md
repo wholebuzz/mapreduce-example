@@ -4,10 +4,16 @@
 
 This project illustrates running a custom Mapper and Reducer in various scheduling scenarios:
 
-- [local](local)
-- [docker](docker)
-- [airflow](airflow)
-- [gcp](gcp)
+- [local](local): Examples of running the tasks locally.
+- [docker](docker): Examples of running the tasks in a local docker.
+- [airflow](airflow): Various [Apache Airflow](https://airflow.apache.org/) operators and examples.
+- [gcp](gcp): Example starting directly on [Google Compute Engine](https://cloud.google.com/compute).
+
+For example tasks, we'll:
+
+- Count the words in this [README.md](README.md)
+- Count the words in the `title` property of records in the test dataset
+- Sort the test dataset by `date`, `guid` and `id`
 
 The [supplied test dataset](https://github.com/wholebuzz/mapreduce/tree/main/test) consists of
 a collection of 10,000 headlines of the form:
@@ -36,10 +42,3 @@ a collection of 10,000 headlines of the form:
   }
 }
 ```
-
-For example tasks, we'll:
-
-- Count the words in this [README.md](README.md)
-- Count the words in the `title` property of records in the test dataset
-- Sort the test dataset by `date`, `guid` and `id`
-
