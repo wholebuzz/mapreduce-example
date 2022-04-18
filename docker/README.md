@@ -29,6 +29,7 @@ $ export MY_JOB_CONFIG=`yarn --silent mapreduce job --new \
   --inputPaths /test/test-SSSS-of-NNNN.json.gz \
   --outputPath /mnt-cwd/wordCounts.jsonl \
   --plugins /mnt-cwd/dist/index.js \
+  --shuffleDirectory /mnt-cwd/ \
   --numWorkers 3 \
   -D inputValueProperty=props.title \
   -D valueProperty=value \
@@ -37,6 +38,6 @@ $ for ((i = 0; i < 3; i++)); do
     docker run \
       -v $PWD:/mnt-cwd \
       -v ~/mapreduce/test:/test \
-      --rm -d -it wholebuzz/mapreduce --jobConfig "$MY_JOB_CONFIG" --workerIndex $i &
+      --rm -d -it wholebuzz/mapreduce --jobConfig "$MY_JOB_CONFIG" --workerIndex $i
   done
 ```
