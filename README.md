@@ -4,10 +4,11 @@
 
 This project illustrates running a custom Mapper and Reducer in various scheduling scenarios:
 
-- [local](local): Examples of running the tasks locally.
-- [docker](docker): Examples of running the tasks in a local docker.
 - [airflow](airflow): Various [Apache Airflow](https://airflow.apache.org/) operators and examples.
-- [gcp](gcp): Example starting directly on [Google Compute Engine](https://cloud.google.com/compute).
+- [docker](docker): Examples of running the tasks in local Docker containers.
+- [helm](helm): Example running on [Kubernetes](https://kubernetes.io/) with [Helm](https://helm.sh/).
+- [gce](gce): Example starting directly on [Google Compute Engine](https://cloud.google.com/compute).
+- [local](local): Examples of running the tasks locally.
 
 For example tasks, we'll:
 

@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mapreduce-wordcount
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: mapreduce
+        image: wholebuzz/mapreduce
+        {{- if .Values.args }}
+        env: 
+          - name: RUN_ARGS
+            value: "{{ $.Values.args }}"
+        {{- end }}
