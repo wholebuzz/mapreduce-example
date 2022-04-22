@@ -15,6 +15,7 @@ For example tasks, we'll:
 - Count the words in this [README.md](README.md)
 - Count the words in the `title` property of records in the test dataset
 - Sort the test dataset by `date`, `guid` and `id`
+- Join two separate datasets, each sorted (and sharded) by `guid` 
 
 The [supplied test dataset](https://github.com/wholebuzz/mapreduce/tree/main/test) consists of
 a collection of 10,000 headlines of the form:
